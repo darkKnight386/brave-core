@@ -6,10 +6,18 @@
 import { color, font, spacing, radius } from '@brave/leo/tokens/css/variables'
 import { scoped } from '$web-common/scoped_css'
 
+export const sponsoredLogoWidth = 170
+
 export const style = scoped.css`
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  &:has(.sponsored-logo) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .photo-credits {
@@ -39,7 +47,7 @@ export const style = scoped.css`
 
     img {
       margin-top: 2px;
-      width: 170px;
+      width: ${sponsoredLogoWidth}px;
       height: auto;
     }
 

@@ -18,18 +18,41 @@ import {
   useBackgroundActions,
 } from '../../context/background_context'
 import { useNewTabState } from '../../context/new_tab_context'
+import { NewTabTakeoverDisclosure } from './new_tab_takeover_disclosure'
 
 import { style } from './background_caption.style'
 
 export function BackgroundCaption() {
   const currentBackground = useCurrentBackground()
+  const centerNttCtaButtonFeatureEnabled = useNewTabState(
+    (s) => s.centerNttCtaButtonFeatureEnabled,
+  )
 
   function renderCaption() {
     switch (currentBackground?.type) {
       case 'brave':
         return <BraveBackgroundCredits background={currentBackground} />
-      case 'sponsored-image':
-        return <SponsoredBackgroundLogo background={currentBackground} />
+      case 'sponsored-image': {
+        const hasLogo = !!currentBackground.logo?.imageUrl
+        const isCenteredCtaButton = centerNttCtaButtonFeatureEnabled && hasLogo
+        return (
+          <>
+            <SponsoredBackgroundLogo background={currentBackground} />
+            <NewTabTakeoverDisclosure
+              background={currentBackground}
+              placement={isCenteredCtaButton ? 'top' : 'top-start'}
+              alignWithLogo={hasLogo}
+            />
+          </>
+        )
+      }
+      case 'sponsored-rich-media':
+        return (
+          <NewTabTakeoverDisclosure
+            background={currentBackground}
+            placement='top-start'
+          />
+        )
       default:
         return null
     }
