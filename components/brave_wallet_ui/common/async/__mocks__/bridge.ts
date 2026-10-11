@@ -722,11 +722,11 @@ export class MockedWalletApiProxy {
         success: true,
         values: [
           {
-            date: { microseconds: BigInt(0) },
+            date: { msec: 0 },
             price: '3500',
           },
           {
-            date: { microseconds: BigInt(1) },
+            date: { msec: 1 },
             price: '3873.78',
           },
         ],
