@@ -93,6 +93,10 @@ void BraveWalletTabHelper::BindEthereumProvider(
     return;
   }
   url::Origin origin = frame_host->GetLastCommittedOrigin();
+  if (!IsValidDappOrigin(origin)) {
+    return;
+  }
+
   tab_helper->ethereum_provider_receivers_.Add(
       std::make_unique<EthereumProviderImpl>(
           host_content_settings_map, brave_wallet_service,
@@ -126,6 +130,10 @@ void BraveWalletTabHelper::BindSolanaProvider(
   }
 
   url::Origin origin = frame_host->GetLastCommittedOrigin();
+  if (!IsValidDappOrigin(origin)) {
+    return;
+  }
+
   tab_helper->solana_provider_receivers_.Add(
       std::make_unique<SolanaProviderImpl>(
           *host_content_settings_map, brave_wallet_service,
@@ -162,6 +170,10 @@ void BraveWalletTabHelper::BindCardanoProvider(
   }
 
   url::Origin origin = frame_host->GetLastCommittedOrigin();
+  if (!IsValidDappOrigin(origin)) {
+    return;
+  }
+
   tab_helper->cardano_provider_receivers_.Add(
       std::make_unique<CardanoProviderImpl>(
           *brave_wallet_service,
