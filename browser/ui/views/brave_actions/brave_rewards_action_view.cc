@@ -309,6 +309,11 @@ void BraveRewardsActionView::OnTabStripModelChanged(
   }
 }
 
+void BraveRewardsActionView::OnRewardsTabHelperDestroyed() {
+  tab_helper_ = nullptr;
+  tab_helper_observation_.Reset();
+}
+
 void BraveRewardsActionView::OnPublisherForTabUpdated(
     const std::string& publisher_id) {
   publisher_registered_ = {publisher_id, false};

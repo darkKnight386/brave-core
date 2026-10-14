@@ -39,6 +39,7 @@ class RewardsTabHelper : public content::WebContentsUserData<RewardsTabHelper>,
   class Observer : public base::CheckedObserver {
    public:
     virtual void OnPublisherForTabUpdated(const std::string& publisher_id) = 0;
+    virtual void OnRewardsTabHelperDestroyed() {}
   };
 
   void AddObserver(Observer* observer);
