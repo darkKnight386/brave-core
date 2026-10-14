@@ -96,12 +96,14 @@ void BraveTabFeatures::Init(TabInterface& tab, Profile* profile) {
 #if BUILDFLAG(ENABLE_BRAVE_ADS)
   // Requires a valid session id, which upstream only creates after
   // `TabHelpers::AttachTabHelpers`, so it can't be attached there.
-  brave_ads::AdsTabHelper::CreateForWebContents(tab.GetContents());
+  ads_tab_helper_ =
+      std::make_unique<brave_ads::AdsTabHelper>(tab.GetContents());
 #endif
 
 #if BUILDFLAG(ENABLE_BRAVE_REWARDS)
   // Requires a valid session id; see above.
-  brave_rewards::RewardsTabHelper::CreateForWebContents(tab.GetContents());
+  rewards_tab_helper_ =
+      std::make_unique<brave_rewards::RewardsTabHelper>(tab.GetContents());
 #endif
 
   // Expect upstream's Init to create the registry.

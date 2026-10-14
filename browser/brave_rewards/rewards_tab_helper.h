@@ -30,6 +30,8 @@ class RewardsTabHelper : public content::WebContentsUserData<RewardsTabHelper>,
                          public content::WebContentsObserver,
                          public RewardsServiceObserver {
  public:
+  explicit RewardsTabHelper(content::WebContents* web_contents);
+
   RewardsTabHelper(const RewardsTabHelper&) = delete;
   RewardsTabHelper& operator=(const RewardsTabHelper&) = delete;
   ~RewardsTabHelper() override;
@@ -55,8 +57,6 @@ class RewardsTabHelper : public content::WebContentsUserData<RewardsTabHelper>,
 
  private:
   friend class content::WebContentsUserData<RewardsTabHelper>;
-
-  explicit RewardsTabHelper(content::WebContents* web_contents);
 
   // content::WebContentsObserver:
   void DidFinishNavigation(
