@@ -103,7 +103,7 @@ cross-origin request from a .onion page sends `Origin: http://<x>.onion` on the
 [2b7e971c1b740](https://chromium.googlesource.com/chromium/src/+/2b7e971c1b7405ba29765aa3c8fdb57f018b5a17)
 touched `StartPreflightCheck`); a Tor owner should confirm the intent.
 
-- [ ] `rewrite/services/network/cors/cors_url_loader.cc.yaml`: also pass
+- [x] `rewrite/services/network/cors/cors_url_loader.cc.yaml`: also pass
       `tainted_ || IsCrossOriginOnionRequest(request_)` to
       `PerformPreflightCheck` in `StartPreflightCheck`
 
