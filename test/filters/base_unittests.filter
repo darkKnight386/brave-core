@@ -20,6 +20,20 @@
 -AlternateTestParams/PartitionAllocWithSizedFreeTest.SchedulerLoopQuarantine/2
 -AlternateTestParams/PartitionAllocWithSizedFreeTest.SchedulerLoopQuarantine/3
 
+# Pkey (thread isolated pool) params of the PartitionAllocTest fixtures crash in
+# DCHECK builds when a second pkey param runs in the same process
+# (partition_bucket.cc: !super_page_extent->number_of_consecutive_super_pages,
+# or !page->is_valid). The pool base is a fresh mapping each time, but the
+# out-of-GigaCage metadata slot for the thread isolated pool is process-global
+# and UninitThreadIsolatedPoolForTesting() does not clear it, so the next test's
+# first direct map sees stale extents (suspected, not confirmed). Which test
+# crashes depends on batch order, so individual entries do not hold. Upstream
+# only rarely runs pkey params with DCHECKs on (35 pkey verdicts vs ~115k for
+# the non-pkey params over 30d, almost all on release builders). /2 and /3 are
+# the pkey params on PKU-capable hosts.
+-AlternateTestParams/PartitionAlloc*Test.*/2
+-AlternateTestParams/PartitionAlloc*Test.*/3
+
 # Upstream Chromium test racing against upstream test infrastructure, not Brave
 # code. DelayedTaskManager::ProcessRipeTasks() pops a ripe ThreadPool delayed
 # task off delayed_task_queue_ and releases queue_lock_ before the callback
