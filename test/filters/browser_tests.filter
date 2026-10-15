@@ -243,6 +243,7 @@
 -ReadAnythingOmniboxControllerBrowserTest.*
 -ReadAnythingApp*Test.*
 -ReadAnythingControllerBrowserTest.*
+-ReadAnythingPrinting*BrowserTest.*
 -ReadAnythingReadAloudAppModelTest.*
 -ReadAnythingReadAloudAppModelV8SegmentationTest.*
 -ReadAnythingSidePanelNavigationThrottleBrowserTest.NavigateInReadAnythingWebContentsProceeds
@@ -402,12 +403,14 @@
 
 # These tests fail because they expect the infobar count to be 1, but we
 # display an additional confirmation infobar for P3A
+-All/DevToolsRemoteServerInfobarBrowserTest.*/*
 -All/DefaultBrowserInfoBarManagerBrowserTest.DestroyingWithoutCloseAllDetachesFromTabs/*
 -All/DefaultBrowserInfoBarManagerBrowserTest.DismissRecordsTheInteractionAndPrefs/*
 -All/DefaultBrowserInfoBarManagerBrowserTest.ShowShowsThePromptInEveryWindow/*
 -All/DevToolsConfirmInfoBarTest.*
 -All/ExtensionInstallUIInstallationErrorBrowserTest.OnInstallFailureShowsInfoBar/*
 -All/InfoBarContainerSplitTabTest.InfobarsAreIndependentInSplitTabs/Prioritization*
+-All/JavascriptOptimizerBubbleBrowserTest.ReloadInfoBarReloadsOnAccept/*
 -All/KnownInterceptionDisclosurePlatformBrowserTest.*
 -All/OSCryptAsyncAvailabilityInfoBarBrowserTest.ShowsTheRelaunchPromptOnTheActiveTab/LegacyInfobar
 -All/OSCryptAsyncAvailabilityInfoBarBrowserTest.ShowsTheRelaunchPromptOnTheActiveTab/MigratedInfobar
@@ -1730,12 +1733,14 @@
 -BreadcrumbManagerTabHelperSecurityStateBrowserTest.BrokenAuthentication
 
 # These fail because we disable history_clusters::internal::kJourneys.
+-ABASearchJourneysContextMenuBrowserTest.*
 -CopySearchJourneyTabFeatureBrowserTest.*
--CopyTextJourneysContextMenuBrowserTest.SearchWebForRecordsCopyMatchingCommittedSrpQuery
+-CopyTextJourneysContextMenuBrowserTest.*
 -ExtensionOpenSidePanelBrowserTest.PinExtensionViaSidePanelJourneyCompletion
 -HistoryClustersPolicyTest.HistoryClustersVisible
 -HistoryClustersSidePanelCoordinatorBrowserTest.*
 -HistoryClustersSidePanelCoordinatorBrowserTest.ShowRespectsManagedPolicy
+-SearchJourneyTabFeatureBrowserTest.*
 
 # These fail because we disable history clusters and the tests can't get the
 # config for the history clusters webui.
@@ -2174,10 +2179,6 @@
 # This test fails because we add our own item to omnibox contextual search
 -OmniboxRowGroupedViewBrowserTest.AnimationAndGrouping
 
-# This test fails because we don't show profile menu for a browser with a
-# single profile
--ProfileMenuViewBrowserTest.ProfileMenuDoesNotOutliveBrowser
-
 # This test fails because we temporarily reverted
 # https://source.chromium.org/chromium/chromium/src/+/b1e66bdb
 # see https://github.com/brave/brave-browser/issues/49422
@@ -2426,7 +2427,10 @@
 # https://issues.chromium.org/issues/502415811
 -OrbAndCorsExtensionBrowserTest.ActiveTabPersmissionVsOrb
 
-# This test fails because we don't show avatar button with a single profile.
+# These tests fail because we don't show the avatar button or profile menu when
+# there's only a single profile.
+-ProfileMenuViewAiSubscriptionTierOverrideTest.BadgeOverrideUsesGenericAnnouncement
+-ProfileMenuViewBrowserTest.ProfileMenuDoesNotOutliveBrowser
 -ProfileMenuViewBrowserTest.ProfileMenuDoubleOpenBeforeBatchUploadResults
 
 # These tests fail because they expect the hardcoded view name BrowserRootView,
@@ -2833,6 +2837,12 @@
 # These tests fail because we disable kTtc feature.
 -AppMenuModelTtcTest.TtcItem
 -TtcKeyedServiceBrowserTest.CreatedForRegularProfile
+
+# We ship our own Global Privacy Control (kBraveGlobalPrivacyControl, on by
+# default), which sends Sec-GPC and exposes navigator.globalPrivacyControl
+# regardless of the upstream Universal Opt-Out features/pref these tests toggle.
+-All/ChromeGlobalPrivacyControlTest.LoadPage/*
+-ChromeGlobalPrivacyControlAllEnabledTest.PrefChangeIsReflectedImmediately
 
 # Tests below this point have not been diagnosed or had issues created yet.
 -All/DeclarativeNetRequestBrowserTest.RendererCacheCleared/*
