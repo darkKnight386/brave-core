@@ -96,8 +96,7 @@ AdsTabHelper::AdsTabHelper(content::WebContents* const web_contents)
 }
 
 AdsTabHelper::~AdsTabHelper() {
-  // Tab features can be destroyed before `WebContentsDestroyed` is observed.
-  WebContentsDestroyed();
+  MaybeNotifyTabdidClose();
 }
 
 void AdsTabHelper::SetAdsServiceForTesting(AdsService* const ads_service) {
@@ -462,12 +461,6 @@ void AdsTabHelper::OnVisibilityChanged(const content::Visibility visibility) {
   if (last_is_web_contents_visible != is_web_contents_visible_) {
     MaybeNotifyTabDidChange();
   }
-}
-
-void AdsTabHelper::WebContentsDestroyed() {
-  MaybeNotifyTabdidClose();
-
-  ads_service_ = nullptr;
 }
 
 #if !BUILDFLAG(IS_ANDROID)
