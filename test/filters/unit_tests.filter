@@ -933,7 +933,7 @@
 
 # This test fails because it expects "Google Password Manager" to appear in the
 # subtitle, but instead "Brave Password Manager" appears there
--RemoteActorSelectionDialogControllerTest.Properties
+-RemoteActorSelectionDialogControllerTest.Properties*
 
 # These tests fail because of mismatch in location bar height (32 vs 34)
 -OmniboxPopupUITest.FullWebUIOmniboxLayoutHelperStandardMode

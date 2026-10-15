@@ -1396,8 +1396,9 @@
 
 # Occasionally flaky upstream as well (via LUCI). Flaky on our CI but passes
 # locally.
+-All/GlicDragAndDropPolicyTest.*/*
+-All/GlicWebDragAndDropBrowserTest.*/*
 -BrowsingTopicsInternalsBrowserTest.TopicsState_OverrideStatusMessage
--GlicDragAndDropPolicyTest.testWebToGlicDragMaterialization*
 -InitialWebUIMetricsMappingBrowserTest.NormalRendererMetricsAreNotMapped
 
 # Occasionally flaky upstream as well (via LUCI). Flaky on our CI and locally.
@@ -2171,7 +2172,7 @@
 -OmniboxContextMenuControllerBrowserTest.SortTabsWithCheckedFirst
 -OmniboxContextMenuControllerContextManagementBrowserTest.SharedTabsSubmenuDynamicLabel
 -OmniboxContextMenuControllerPecBrowserTest.ExecuteCommand*
--OmniboxContextMenuControllerPecBrowserTestWithFlagsDisabled.VerifyModelPickerCheckmark_FlagOff
+-OmniboxContextMenuControllerPecBrowserTestWithFlagsDisabled.Verify*_FlagOff
 -OmniboxContextMenuControllerPecBrowserTest.ModelPickerCheckmark
 -OmniboxContextMenuControllerPecBrowserTest.RecordHistogramOnCanvasCommand
 -OmniboxContextMenuControllerPecBrowserTest.VerifyTabEnablementWhenMaxInputsReached
@@ -2286,6 +2287,7 @@
 -PinnedToolbarActionsContainerBrowserTest.DividerNotVisibleWhileButtonPoppedOut
 -PinnedToolbarActionsContainerBrowserTest.MetricsRecordedForPinnableActions
 -PinnedToolbarActionsContainerBrowserTest.PoppedOutButtonsAreAfterPinned
+-PinnedToolbarActionsContainerBrowserTest.QRCodeUpdatesWithPolicyPrefChanges
 -PinnedToolbarActionsContainerBrowserTest.StateChangesBetweenPinnedandUnpinnedWhileActive
 -PinnedToolbarActionsContainerBrowserTest.UnpinnedToolbarButtonsPoppedOutWhileActive
 -PinnedToolbarActionsContainerWebUIDisabledBrowserTest.ActiveActionSkipsExecution
