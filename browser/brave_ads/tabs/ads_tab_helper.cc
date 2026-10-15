@@ -95,7 +95,10 @@ AdsTabHelper::AdsTabHelper(content::WebContents* const web_contents)
   OnVisibilityChanged(web_contents->GetVisibility());
 }
 
-AdsTabHelper::~AdsTabHelper() = default;
+AdsTabHelper::~AdsTabHelper() {
+  // Tab features can be destroyed before `WebContentsDestroyed` is observed.
+  WebContentsDestroyed();
+}
 
 void AdsTabHelper::SetAdsServiceForTesting(AdsService* const ads_service) {
   CHECK_IS_TEST();
